@@ -39,4 +39,10 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     public ProductInfo save(ProductInfo productInfo) {
         return repository.save(productInfo);
     }
+
+    @Override
+    public void delete(String productId) {
+        if (repository.existsById(productId)){
+        repository.deleteById(productId);}
+    }
 }

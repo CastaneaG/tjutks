@@ -32,4 +32,8 @@ class ProductInfoServiceImplTest {
     @Test
     void save() {
     }
+    @Test
+    void delete() {
+        productInfoService.delete("1006");
+    }
 }

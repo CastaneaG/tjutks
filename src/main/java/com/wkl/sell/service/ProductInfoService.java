@@ -14,4 +14,5 @@ public interface ProductInfoService {
     Page<ProductInfo> findAll(Pageable pageable);
     List<ProductInfo> findAll();
     ProductInfo save(ProductInfo productInfo);
+    void delete(String productId);
 }
