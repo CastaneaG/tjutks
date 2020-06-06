@@ -26,7 +26,7 @@
                                 <td>${sellerInfo.sellerId}</td>
                                 <td>${sellerInfo.username}</td>
                                 <td><a href="/sell/admin/index?sellerId=${sellerInfo.sellerId}">修改</a></td>
-                                <td><a href="/sell/admin/delete?productId=${sellerInfo.sellerId}">删除</a></td>
+                                <td><a href="/sell/admin/delete?sellerId=${sellerInfo.sellerId}">删除</a></td>
 
                             </tr>
                         </#list>

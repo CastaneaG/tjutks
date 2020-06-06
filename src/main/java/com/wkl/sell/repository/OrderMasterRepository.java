@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderMasterRepository extends JpaRepository<OrderMaster,String> {
     Page<OrderMaster> findByBuyerPhone(String buyerPhone, Pageable pageable);
+    Page<OrderMaster> findAllByOrderByCreateTimeDesc(Pageable pageable);
 }
