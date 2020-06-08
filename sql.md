@@ -40,5 +40,8 @@ create table if not exists `seller_info`(
 `permission` int not null,
 primary key (`seller_id`)
 )comment '卖家信息表';
+
+ALTER TABLE order_detail ADD FOREIGN KEY orderid (order_id) REFERENCES order_master (order_id);
+ALTER TABLE order_detail ADD FOREIGN KEY productid (product_id) REFERENCES product_info (product_id);
 ```
 
