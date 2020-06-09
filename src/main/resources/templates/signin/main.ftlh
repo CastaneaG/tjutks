@@ -6,7 +6,7 @@
     <div class="row clearfix">
         <div class="col-md-12 column">
             <h3 class="text-center">
-                外卖订单管理系统
+                网上订餐管理系统
             </h3>
             <form role="form" method="post" action="/sell/seller/signin/check">
                 <div class="form-group">

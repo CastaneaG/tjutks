@@ -66,9 +66,5 @@ public class SellerSignInController {
             map.put("url", "/sell/seller/signin/main");
             return new ModelAndView("common/error", map);
         }
-
-
-
-
     }
 }

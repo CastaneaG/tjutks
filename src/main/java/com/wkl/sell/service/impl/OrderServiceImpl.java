@@ -55,7 +55,7 @@ public class OrderServiceImpl implements OrderService {
 
         String orderId = KeyUtil.genUniqueKey();
         BigDecimal orderAmount = new BigDecimal(ZERO);
-        //1. 查询商品（数量, 价格）
+
         for(OrderDetail orderDetail :orderDTO.getOrderDetailList()){
             ProductInfo productInfo = productService.findById(orderDetail.getProductId());
             if (productInfo == null){
@@ -65,6 +65,22 @@ public class OrderServiceImpl implements OrderService {
             orderAmount = productInfo.getProductPrice()
                     .multiply(new BigDecimal(orderDetail.getProductQuantity()))
                     .add(orderAmount);
+
+        }
+        //3. 写入订单数据库（orderMaster和orderDetail）
+        OrderMaster orderMaster = new OrderMaster();
+        //要先拷贝 否则null也会被拷贝
+        orderDTO.setOrderId(orderId);
+        BeanUtils.copyProperties(orderDTO,orderMaster);
+        orderMaster.setOrderAmount(orderAmount);
+        //赋值把状态初始值也拷贝没了
+        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
+
+        orderMasterRepository.save(orderMaster);
+
+        //1. 查询商品（数量, 价格）
+        for(OrderDetail orderDetail :orderDTO.getOrderDetailList()){
+            ProductInfo productInfo = productService.findById(orderDetail.getProductId());
             //订单详情入库
             orderDetail.setDetailId(KeyUtil.genUniqueKey());
             orderDetail.setOrderId(orderId);
@@ -73,19 +89,6 @@ public class OrderServiceImpl implements OrderService {
             orderDetailRepository.save(orderDetail);
 
         }
-
-        //3. 写入订单数据库（orderMaster和orderDetail）
-        OrderMaster orderMaster = new OrderMaster();
-        //要先拷贝 否则null也会被拷贝
-        orderDTO.setOrderId(orderId);
-        BeanUtils.copyProperties(orderDTO,orderMaster);
-
-        orderMaster.setOrderAmount(orderAmount);
-        //赋值把状态初始值也拷贝没了
-        orderMaster.setOrderStatus(OrderStatusEnum.NEW.getCode());
-
-        orderMasterRepository.save(orderMaster);
-
         return orderDTO;
     }
 
@@ -120,6 +123,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderDTO cancel(OrderDTO orderDTO) {
         OrderMaster orderMaster = new OrderMaster();
 
@@ -149,6 +153,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public OrderDTO finish(OrderDTO orderDTO) {
         //判断订单状态
         if (!orderDTO.getOrderStatus().equals(OrderStatusEnum.NEW.getCode())) {

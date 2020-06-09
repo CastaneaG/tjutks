@@ -2,10 +2,8 @@
     <#include "../common/header.ftlh">
     <body>
     <div id="wrapper" class="toggled">
-
         <#--边栏sidebar-->
         <#include "../common/nav.ftlh">
-
         <#--主要内容content-->
         <div id="page-content-wrapper">
             <div class="container-fluid">
@@ -29,7 +27,6 @@
                                     <td>${orderDTO.orderId}</td>
                                     <td>${orderDTO.buyerName}</td>
                                     <td>${orderDTO.buyerPhone}</td>
-
                                     <td>${orderDTO.orderAmount}</td>
                                     <td>${orderDTO.getOrderStatusEnum().message}</td>
                                     <td>${orderDTO.createTime}</td>
