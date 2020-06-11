@@ -1,6 +1,6 @@
 <html>
     <#include "../common/header.ftlh">
-    <body>
+    <body background="/sell/img/my.jpg">
     <div id="wrapper" class="toggled">
         <#--边栏sidebar-->
         <#include "../common/nav.ftlh">

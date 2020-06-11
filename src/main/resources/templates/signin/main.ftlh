@@ -1,7 +1,7 @@
 <html>
 <#include "../common/header.ftlh">
 
-<body>
+<body background="/sell/img/my.jpg">
 <div class="container">
     <div class="row clearfix">
         <div class="col-md-12 column">

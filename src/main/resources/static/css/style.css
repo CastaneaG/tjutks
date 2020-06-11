@@ -1,6 +1,10 @@
 body {
   position: relative;
   overflow-x: hidden;
+  background-size: cover;
+}
+table{
+  background-color:white
 }
 body,
 html {

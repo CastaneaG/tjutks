@@ -1,7 +1,7 @@
 <html>
 <#include "../common/header.ftlh">
 
-<body>
+<body background="/sell/img/my.jpg">
 <div id="wrapper" class="toggled">
 
     <#--边栏sidebar-->
@@ -11,8 +11,8 @@
     <div id="page-content-wrapper">
         <div class="container-fluid">
             <div class="row clearfix">
-                <div class="col-md-12 column">
-                    <form role="form" method="post" action="/sell/admin/save">
+                <div class="col-md-12 column" >
+                    <form role="form" method="post" action="/sell/admin/save" >
                         <div class="form-group">
                             <label>用户名</label>
                             <input name="username" type="text" class="form-control" value="${(sellerInfo.username)!''}"/>
